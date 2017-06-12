@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.error {
+	color: red;
+	display: none;
+	font-size: 12px;
+	text-align: center;
+}
+.error2{
+	color: red;
+}
+
+form {
+	width: 300px;
+	border: 1px solid black;
+}
+
+label {
+	padding-left: 10px;
+	width: 80px;
+	float: left;
+}
+
+p:LAST-CHILD {
+	text-align: center;
+}

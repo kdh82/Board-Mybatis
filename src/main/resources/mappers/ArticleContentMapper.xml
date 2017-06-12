@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgit.article.model.ArticleContentDao">
+<resultMap type="articleContent" id="articleContentResult">
+   <id column="article_no" property="number"/>
+   <result column="content" property="content"/>
+</resultMap>
+<insert id="insert" parameterType="articleContent">
+	insert into article_content (article_no, content) values(#{number}, #{content})
+</insert>
+<select id="selectById" parameterType="int" resultMap="articleContentResult">
+	select * from article_content where article_no = #{number}
+</select>
+<delete id="delete" parameterType="articleContent">
+	DELETE FROM article_content WHERE article_no = #{number}
+</delete>
+<update id="update" parameterType="articleContent">
+	UPDATE article_content SET content = #{content} WHERE article_no = #{number}
+</update>
+</mapper>

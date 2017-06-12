@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgit.article.model.ArticleDao">
+<resultMap type="article" id="articleResult">
+   <id column="article_no" property="number"/>
+   <result column="writer_id" property="id"/>
+   <result column="writer_name" property="name"/>
+   <result column="title" property="title"/>
+   <result column="regdate" property="regDate"/>
+   <result column="moddate" property="modifiedDate"/>
+   <result column="read_cnt" property="readCount"/>
+</resultMap>
+<insert id="insert" parameterType="article">
+	insert into article values (#{number},#{id},#{name},#{title},#{regDate},#{modifiedDate},#{readCount})
+</insert>
+<select id="selectLastId" resultType="int">
+	select last_insert_id() from article where article_no=#{number};
+</select>
+<select id="selectList" resultMap="articleResult">
+	select * from article
+</select>
+<select id="selectById" parameterType="int" resultType="article">
+	select * from article where article_no = #{number}
+</select>
+<delete id="delete" parameterType="article">
+	DELETE FROM article WHERE article_no=#{number}
+</delete>
+<update id="updateContent" parameterType="article">
+	update article set title=#{title} where article_no=#{number}
+</update>
+<update id="updateReadcnt" parameterType="article">
+	UPDATE article SET read_cnt=#{readCount}+1 WHERE article_no=#{number}
+</update>
+</mapper>
